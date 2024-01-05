@@ -1,6 +1,6 @@
 import React from 'react';
-import Counter from './Counter';
-import Timer from './Timer';
+import Counter from './Task1/Counter';
+import Timer from './Task1/Timer';
 
 
 
