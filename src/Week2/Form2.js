@@ -1,21 +1,24 @@
-
-
 import React from 'react';
-import useForm from './useForm'; 
+import { useForm } from 'react-hook-form';
+
 const Form2 = () => {
-  const { values, errors, successMessage, handleChange, handleSubmit } = useForm(
-    { name: '', email: '', password: '' },
-    (submittedValues) => {
-      
-      console.log('Form submitted successfully:', submittedValues);
-    }
-  );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm(); 
+
+  const onSubmit = (data) => {
+    console.log('Form submitted successfully!', data);
+    reset(); 
+  };
 
   return (
     <div className="container-fluid d-flex align-items-center justify-content-center min-vh-100">
       <div className="card p-4">
         <h2 className="text-center mb-4">Form with useForm</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name:
@@ -25,11 +28,11 @@ const Form2 = () => {
               className={`form-control ${errors.name ? 'is-invalid' : ''}`}
               id="name"
               name="name"
-              value={values.name}
-              onChange={handleChange}
+              {...register("name", { required: 'Name is required' })}
             />
-            {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+            {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
           </div>
+
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email:
@@ -39,11 +42,17 @@ const Form2 = () => {
               className={`form-control ${errors.email ? 'is-invalid' : ''}`}
               id="email"
               name="email"
-              value={values.email}
-              onChange={handleChange}
+              {...register("email", {
+                required: 'Email is required',
+                pattern: {
+                  value: /^\S+@\S+\.\S+$/,
+                  message: 'Invalid email format'
+                }
+              })}
             />
-            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+            {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}
           </div>
+
           <div className="mb-3">
             <label htmlFor="password" className="form-label">
               Password:
@@ -53,16 +62,15 @@ const Form2 = () => {
               className={`form-control ${errors.password ? 'is-invalid' : ''}`}
               id="password"
               name="password"
-              value={values.password}
-              onChange={handleChange}
+              {...register("password", { required: 'Password is required' })}
             />
-            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+            {errors.password && <div className="invalid-feedback">{errors.password.message}</div>}
           </div>
+
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
-        {successMessage && <p className="mt-3 text-success">{successMessage}</p>}
       </div>
     </div>
   );

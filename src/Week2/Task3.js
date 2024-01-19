@@ -1,48 +1,51 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios'; 
+import { loginRequest, loginSuccess, loginFailure } from '../Redux/Actions/AuthActions';
 
 const Task3 = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const error = useSelector((state) => state.auth.error);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
-    const apiUrl = 'https://c9nvbd3v6j.execute-api.eu-west-1.amazonaws.com/dev/users/login';
+    dispatch(loginRequest());
 
-    
+    const loginUrl = 'https://c9nvbd3v6j.execute-api.eu-west-1.amazonaws.com/dev/users/login';
+                    
+
     const data = {
       email: email,
       password: password,
     };
 
     try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
+      const response = await axios.post(loginUrl, data,
+         {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        
-        setError('');
-        console.log('Login successful!');
-        alert('Login successful!');
-       
+      if (response.status === 200) {
+        dispatch(loginSuccess(response.data)); 
+        console.log(response.data);
+        alert("Login successful!!");
         setEmail('');
         setPassword('');
-      } else {
-      
-        const errorData = await response.json();
-        setError(errorData.message || 'Login failed');
-        console.log('Login failed:', errorData.message);
+      }
+       else
+      {
+        dispatch(loginFailure(response.data.msg || 'Login failed')); 
       }
     } catch (error) {
-      
-      setError(' error occurred. Please try again .');
+      let errorMessage = error.response.data.msg  || 'Error please check ';
+      dispatch(loginFailure(errorMessage));
       console.error('API request failed:', error);
     }
   };
@@ -50,7 +53,7 @@ const Task3 = () => {
   return (
     <div className="container d-flex align-items-center justify-content-center min-vh-100">
       <div className="col-md-6">
-        <h2 className="text-center mb-4">Login</h2>
+        <h2 className="text-center mb-4">Login Using axios and Redux</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -80,7 +83,7 @@ const Task3 = () => {
           </div>
           {error && <p className="text-danger">{error}</p>}
           <button type="submit" className="btn btn-primary w-100">
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>
