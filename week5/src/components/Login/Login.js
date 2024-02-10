@@ -55,7 +55,7 @@ const Login = () => {
               </div>
               {error && <p className='text-danger'>{error}</p>}
               <div className='text-center'>
-              <Button onClick={handleSubmit} color={'success'} name={'Login'}></Button>
+              <Button onClick={handleSubmit} color={'success'} name={'Login'} />
               </div>
             </form>
           </div>

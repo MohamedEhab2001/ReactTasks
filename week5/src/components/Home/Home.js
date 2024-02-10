@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import Button from '../../shared/Button';
 import UserList from '../UserDetailsSlider/UserDetailsSlider';
-
+import WelcomeMessage from './WelcomeMessage';
 const Home = () => {
   const location = useLocation();
   const { id, name } = location.state || {};
@@ -18,12 +18,12 @@ const Home = () => {
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
             <h2 className="mb-0">Home</h2>
-            <p className="mb-0">Welcome, User {name}!</p>
+            <WelcomeMessage name={name} />
+
           </div>
           <div className="d-flex align-items-center">
-            <button className="btn btn-danger me-2" onClick={handleLogout}>
-              Logout
-            </button>
+           
+            <Button onClick={handleLogout} color={'danger'} name={'Logout'} />
           </div>
         </div>
         <UserList userId={id}   />

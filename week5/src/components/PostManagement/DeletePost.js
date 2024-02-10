@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Button from '../../shared/Button';
 
 const DeletePost = ({userId, postId, onDelete }) => {
   
@@ -19,9 +19,10 @@ const DeletePost = ({userId, postId, onDelete }) => {
 
   return (
     <>
-      <Button variant="danger" onClick={handleShow}>
-        Delete
-      </Button>
+    
+
+      <Button onClick={handleShow} color={'danger'} name={'Delete'} />
+
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -33,13 +34,11 @@ const DeletePost = ({userId, postId, onDelete }) => {
         </Modal.Body>
 
         <Modal.Footer>
-          
-          <Button variant="success" onClick={handleDelete}>
-            Yes
-          </Button>
-          <Button variant="danger" onClick={handleClose}>
-            No
-          </Button>
+         
+
+          <Button onClick={handleDelete} color={'success'} name={'Yes'} />
+          <Button onClick={handleClose} color={'danger'} name={'No'} />
+
         </Modal.Footer>
       </Modal>
     </>

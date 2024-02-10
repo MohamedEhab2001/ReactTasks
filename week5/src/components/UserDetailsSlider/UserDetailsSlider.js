@@ -129,7 +129,7 @@ const UserList = ({ userId }) => {
                 <p className="card-text">{user.email}</p>
                 <p className="card-text">{user.phone}</p>
                 <p className="card-text">City: {user.address.city}</p>
-                <Button onClick={() => handleUserClick(user.id)} color={'primary'} name={' Click here to see posts'}></Button>
+                <Button onClick={() => handleUserClick(user.id)} color={'primary'} name={' Click here to see posts'} />
 
               </div>
             </div>
@@ -138,7 +138,7 @@ const UserList = ({ userId }) => {
       </Slider>
 
       <div className='m-2'>
-        <Button onClick={() => setShowAddModal(true)} color={'success'} name={' Add Post'}></Button>
+        <Button onClick={() => setShowAddModal(true)} color={'success'} name={' Add Post'} />
       </div>
       
       <AddPostModal

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import Button from '../../shared/Button';
 
 const AddPostModal = ({userId, show, handleClose, handleAddPost }) => {
   
@@ -45,8 +45,10 @@ const AddPostModal = ({userId, show, handleClose, handleAddPost }) => {
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={handleClose}>Close</Button>
-        <Button variant="success" onClick={handleAddClick}>Add Post</Button>
+       
+
+        <Button onClick={handleClose} color={'danger'} name={'Close'} />
+        <Button onClick={handleAddClick} color={'success'} name={'Add Post'} />
       </Modal.Footer>
     </Modal>
   );

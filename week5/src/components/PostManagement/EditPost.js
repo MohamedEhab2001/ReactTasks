@@ -39,8 +39,8 @@ const handleEditPost = () => {
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleClose} color={'danger'} name={' Close'}></Button>
-        <Button onClick={handleEditPost} color={'success'} name={' Save Changes'}></Button>
+        <Button onClick={handleClose} color={'danger'} name={' Close'} />
+        <Button onClick={handleEditPost} color={'success'} name={' Save Changes'} />
       </Modal.Footer>
     </Modal>
   );
