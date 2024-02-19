@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import { useQueryClient }from 'react-query';
+import {  useQueryClient } from 'react-query';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Post from '../PostManagement/Post';
@@ -14,36 +14,39 @@ import { usePostMutations } from '../../hooks/usePostMutations';
 
 const UserList = () => {
   const { user } = useAuth();
-  console.log("user =",user);
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(user?.id);
-  const queryClient = useQueryClient();
   const [selectedCard, setSelectedCard] = useState(null);
 
-  const { data: users } = useUsers();
-  const { data: userPosts, isLoading, error } = useUserPosts(selectedUserId);
-  const { addMutation, editMutation, deleteMutation } = usePostMutations(selectedUserId);
+  const queryClient = useQueryClient();
 
+ const { data: users } = useUsers();
+ const { data: userPosts, isLoading, error } = useUserPosts(selectedUserId);
+ const { addMutation, editMutation, deleteMutation } = usePostMutations(selectedUserId);
+ 
+  
   const handleUserClick = (userId) => {
     setSelectedUserId(userId);
     setSelectedCard(userId); 
   };
 
   const handleAddPost = ({ title, body }) => {
+    setShowAddModal(false);
     addMutation.mutate({ userId: selectedUserId, title, body });
   };
 
   const handleEditPost = (postId, title, body) => {
+    console.log("In handle edit post",postId)
     editMutation.mutate({ postId, title, body });
   };
-  
-  const handleDeletePost = (postId) => {
+  const handleDeletePost = (userId,postId) => {
+    console.log('In delete handle post, post id =',postId,userId)
     deleteMutation.mutate(postId);
   };
   
   return (
     <div className="container">
-      <h2 className="my-4">List of Users</h2>
+      <h2 className="my-4">User List</h2>
       <Slider {...sliderSettings}>
         {users?.map((user) => (
           <div key={user.id} >
@@ -59,20 +62,20 @@ const UserList = () => {
           </div>
         ))}
       </Slider>
-        <div className='m-3'>
+
       <Button onClick={() => setShowAddModal(true)}>Add Post</Button>
-      </div>
 
       <AddPostModal
         show={showAddModal}
         handleClose={() => setShowAddModal(false)}
         handleAddPost={handleAddPost}
         userId={selectedUserId}
+
       />
 
       {userPosts?.map((post) => (
         <Post
-          userId={selectedUserId}
+        userId={selectedUserId}
           key={post.id}
           post={post}
           onEdit={handleEditPost}

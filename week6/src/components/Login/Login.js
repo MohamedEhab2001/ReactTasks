@@ -19,7 +19,7 @@ const Login = () => {
       });
 
       if (response.data.length > 0) {
-        
+       
         const userData = response.data[0];
 
 
@@ -41,7 +41,7 @@ const Login = () => {
         <div className='col-md-4'></div>
         <div className='col-md-4'>
           <div className='card p-4'>
-            <h2 className='text-center mb-4'> User Login</h2>
+            <h2 className='text-center mb-4'>Login</h2>
             <form onSubmit={handleSubmit}>
               <div className='mb-3'>
                 <label htmlFor='email' className='form-label'>Email:</label>
