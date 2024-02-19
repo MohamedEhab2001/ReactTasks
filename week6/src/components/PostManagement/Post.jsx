@@ -5,7 +5,7 @@ import DeletePost from './DeletePost';
 import Button from '../../shared/Button';
 
 const Post = ({ userId, post,onEdit, onDelete }) => {
-  
+ 
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedTitle, setEditedTitle] = useState(post.title);
   const [editedBody, setEditedBody] = useState(post.body);

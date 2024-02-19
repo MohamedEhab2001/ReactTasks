@@ -7,10 +7,12 @@ const Button = ({ onClick, children, color, name }) => {
   };
 
   return (
+    <div>
     <button className={`btn btn-${color || 'primary'} w-70`} onClick={onClick} style={buttonStyle}>
       {name && <span className="button-name">{name}</span>}
       {children}
     </button>
+    </div>
   );
 };
 

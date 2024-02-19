@@ -1,85 +1,37 @@
 import React, { useState } from 'react';
-import Slider from 'react-slick';
-import { useQueryClient } from 'react-query';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Post from '../PostManagement/Post';
-import AddPostModal from '../PostManagement/AddPost';
+import Modal from 'react-bootstrap/Modal';
 import Button from '../../shared/Button';
-import { useAuth } from '../../context/AuthContext';
-import { sliderSettings } from '../../shared/SliderSettings';
-import { useUserPosts } from '../../hooks/useUserPosts';
-import { useUsers } from '../../hooks/useUsers';
-import { usePostMutations } from '../../hooks/usePostMutations';
 
-const UserList = () => {
-  const { user } = useAuth();
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState(user?.id);
-  const queryClient = useQueryClient();
-  const [selectedCard, setSelectedCard] = useState(null); 
+const DeletePost = ({ userId, postId, onDelete }) => {
+  const [showModal, setShowModal] = useState(false);
 
-  const { data: users } = useUsers();
-  const { data: userPosts, isLoading, error } = useUserPosts(selectedUserId);
-  const { addMutation, editMutation, deleteMutation } = usePostMutations(selectedUserId);
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
-  const handleUserClick = (userId) => {
-    setSelectedUserId(userId);
-    setSelectedCard(userId); 
+  const handleDelete = () => {
+    onDelete({ userId, postId });
+    handleClose();
   };
 
-  const handleAddPost = ({ title, body }) => {
-    addMutation.mutate({ userId: selectedUserId, title, body });
-  };
-
-  const handleEditPost = (postId, title, body) => {
-    editMutation.mutate({ postId, title, body });
-  };
-  
-  const handleDeletePost = (postId) => {
-    deleteMutation.mutate(postId);
-  };
-  
   return (
-    <div className="container">
-      <h2 className="my-4">List of Users</h2>
-      <Slider {...sliderSettings}>
-        {users?.map((user) => (
-          <div key={user.id} >
-            <div className="card text-center">
-            <div className={`card-body col ${selectedCard === user.id ? 'bg-info' : ''}`}>
-                <h5 className="card-title">{user.id} {'. '} {user.username}</h5>
-                <p className="card-text">{user.email}</p>
-                <p className="card-text">{user.phone}</p>
-                <p className="card-text">City: {user.address.city}</p>
-                <Button onClick={() => handleUserClick(user.id)} color={'primary'} name={' Click here to see posts'} />
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
-        <div className='m-3'>
-      <Button onClick={() => setShowAddModal(true)}>Add Post</Button>
-      </div>
+    <>
+      <Button onClick={handleShow} color={'danger'} name={'Delete'} />
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deletion</Modal.Title>
+        </Modal.Header>
 
-      <AddPostModal
-        show={showAddModal}
-        handleClose={() => setShowAddModal(false)}
-        handleAddPost={handleAddPost}
-        userId={selectedUserId}
-      />
+        <Modal.Body>
+          Are you sure you want to delete this post?
+        </Modal.Body>
 
-      {userPosts?.map((post) => (
-        <Post
-          userId={selectedUserId}
-          key={post.id}
-          post={post}
-          onEdit={handleEditPost}
-          onDelete={handleDeletePost}
-        />
-      ))}
-    </div>
+        <Modal.Footer>
+          <Button onClick={handleDelete} color={'success'} name={'Yes'} />
+          <Button onClick={handleClose} color={'danger'} name={'No'} />
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
-export default UserList;
+export default DeletePost;
