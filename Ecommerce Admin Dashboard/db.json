@@ -1,0 +1,240 @@
+{
+  "admin-users": [
+    {
+      "id": "1",
+      "email": "niranjan@gmail.com",
+      "password": "12345",
+      "username": "Niranjan",
+      "photoURL": "/assets/images/avatars/avatar_25.jpg"
+    },
+    {
+      "id": "2",
+      "email": "mohammed@gmail.com",
+      "password": "12345",
+      "username": "Mohammed",
+      "photoURL": "/assets/images/avatars/avatar_5.jpg"
+    }
+  ],
+  "customers": [
+    {
+      "id": "2",
+      "name": "Customer2",
+      "email": "customer2@gmail.com",
+      "mobile": 9000000001,
+      "city": "Banglore",
+      "country": "India"
+    },
+    {
+      "id": "3",
+      "name": "Customer3",
+      "email": "customer3@gmail.com",
+      "mobile": 9000000003,
+      "city": "Chennai",
+      "country": "India"
+    },
+    {
+      "id": "4",
+      "name": "Customer4",
+      "email": "customer4@gmail.com",
+      "mobile": 9000000004,
+      "city": "Pune",
+      "country": "India"
+    },
+    {
+      "id": "5",
+      "name": "Customer5",
+      "email": "customer5@gmail.com",
+      "mobile": 9000000005,
+      "city": "Hyderabad",
+      "country": "India"
+    },
+    {
+      "id": "6",
+      "name": "Customer6",
+      "email": "customer6@gmail.com",
+      "mobile": 9000000006,
+      "city": "Pune",
+      "country": "India"
+    },
+    {
+      "id": "7",
+      "name": "Customer7",
+      "email": "customer7@gmail.com",
+      "mobile": 9000000007,
+      "city": "Banglore",
+      "country": "India"
+    },
+    {
+      "id": "8",
+      "name": "Customer8",
+      "email": "customer8@gmail.com",
+      "mobile": 9000000008,
+      "city": "Chennai",
+      "country": "India"
+    },
+    {
+      "id": "9",
+      "name": "Customer9",
+      "email": "customer9@gmail.com",
+      "mobile": 9000000009,
+      "city": "Hyderabad",
+      "country": "India"
+    },
+    {
+      "id": "11",
+      "name": "Customer11",
+      "email": "customer11@gmail.com",
+      "mobile": 9000000011,
+      "city": "Pune",
+      "country": "India"
+    },
+    {
+      "id": "15",
+      "name": "Customer15",
+      "email": "customer15@gmail.com",
+      "mobile": 9000000015,
+      "city": "Pune",
+      "country": "India"
+    },
+    {
+      "id": "16",
+      "name": "Customer16",
+      "email": "customer16@gmail.com",
+      "mobile": 9000000016,
+      "city": "Hyderabad",
+      "country": "India"
+    },
+    {
+      "id": "30",
+      "name": "niranjan reddy",
+      "email": "niranjan@gmail.com",
+      "mobile": "3455677",
+      "city": "newcastle",
+      "country": "United Kingdom"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Adidas",
+      "price": "customer1@gmail.com",
+      "categoryId": 1,
+      "unit": ""
+    },
+    {
+      "id": "2",
+      "name": "T-shirt",
+      "price": 50,
+      "categoryId": 2
+    },
+    {
+      "id": "3",
+      "name": "Iphone",
+      "price": 30,
+      "categoryId": 3
+    },
+    {
+      "id": "4",
+      "name": "Bullet",
+      "price": 30,
+      "categoryId": 4
+    },
+    {
+      "id": "5",
+      "name": "Boost",
+      "price": 30,
+      "categoryId": 5
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Shoes"
+    },
+    {
+      "id": "2",
+      "name": "Shirts"
+    },
+    {
+      "id": "3",
+      "name": "Mobiles"
+    },
+    {
+      "id": "4",
+      "name": "Bikes"
+    },
+    {
+      "id": "5",
+      "name": "Fooditems"
+    }
+  ],
+  "salesByProducts": [
+    {
+      "productId": 1,
+      "quantity": 10,
+      "totalSales": 1000,
+      "id": "2248"
+    },
+    {
+      "productId": 2,
+      "quantity": 5,
+      "totalSales": 250,
+      "id": "9961"
+    },
+    {
+      "productId": 3,
+      "quantity": 3,
+      "totalSales": 90,
+      "id": "cab0"
+    },
+    {
+      "productId": 4,
+      "quantity": 2,
+      "totalSales": 60,
+      "id": "a54f"
+    },
+    {
+      "productId": 5,
+      "quantity": 4,
+      "totalSales": 120,
+      "id": "f48c"
+    }
+  ],
+  "productAnalytics": {
+    "totalProducts": 5,
+    "totalCategories": 5,
+    "totalSales": 1520
+  },
+  "salesByCategory": [
+    {
+      "categoryId": 1,
+      "quantity": 10,
+      "totalSales": 500,
+      "id": "126a"
+    },
+    {
+      "categoryId": 2,
+      "quantity": 5,
+      "totalSales": 250,
+      "id": "416d"
+    },
+    {
+      "categoryId": 3,
+      "quantity": 3,
+      "totalSales": 90,
+      "id": "4adc"
+    },
+    {
+      "categoryId": 4,
+      "quantity": 2,
+      "totalSales": 60,
+      "id": "a170"
+    },
+    {
+      "categoryId": 5,
+      "quantity": 4,
+      "totalSales": 120,
+      "id": "e9f0"
+    }
+  ]
+}
